@@ -1,25 +1,38 @@
 import { join } from 'path';
 
+import minimist, { ParsedArgs } from 'minimist';
+
 import { UserInput } from '../shared/models';
-import { checkInputValidity } from './check-input-validity';
 
 export function getUserInput(): UserInput {
-  const command = process.argv[2];
-  const unit = process.argv[3];
-  const item = process.argv[4];
+  const args = minimist(process.argv.slice(2)) as Args;
 
-  if (!checkInputValidity({ command, itemType: unit, item })) {
-    throw 'You might want to read the manual, your command made no sense.';
-  }
+  let {
+    _: [path],
+    itemType,
+    itemFolder,
+    itemName,
+    templatesRoot,
+    ...dictionaryOfReplacements
+  } = args;
 
-  const componentFolder = `src/${item}`;
   const currentWorkingDirectory = process.cwd();
-  const { itemName } = item.match(/\/?(?<itemName>[^\/]+)$/)?.groups as { itemName: string };
+  itemFolder ??= join(currentWorkingDirectory, `src/${path}`) ;
+  itemName ??= (path.match(/\/?(?<itemName>[^\/]+)$/)?.groups as { itemName: string }).itemName;
+  templatesRoot ??=  `${__dirname}/../../templates/`;
 
   return {
-    itemFolder: join(currentWorkingDirectory, componentFolder),
+    itemFolder,
     itemName,
-    itemType: unit,
-    templatesRootFolder: `${__dirname}/../../templates/`,
+    itemType,
+    templatesRoot,
+    dictionaryOfReplacements: {...dictionaryOfReplacements, [itemType]: itemName}
   };
+}
+
+interface Args extends ParsedArgs {
+  itemType: string;
+  itemFolder?: string;
+  itemName?: string;
+  templatesRoot?: string;
 }
