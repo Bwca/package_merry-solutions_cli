@@ -1,16 +1,14 @@
 {
-  "name": "ts-template-repo",
+  "name": "cast",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
-  "files": [
-    "dist/**"
-  ],
   "scripts": {
-    "build": "tsup src/index.ts --minify --dts",
+    "build": "microbundle --sourcemap=false --compress --format=cjs",
     "dev": "nodemon",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "test": "jest"
+    "test": "jest",
+    "cast": "cast"
   },
   "husky": {
     "hooks": {}
@@ -20,8 +18,9 @@
       "eslint --fix"
     ]
   },
-  "bin": "",
-  "keywords": [],
+  "bin": {
+    "cast": "./dist/index.js"
+  },
   "author": {
     "name": "Volodymyr Yepishev",
     "email": "yepishevv@gmail.com"
@@ -48,10 +47,11 @@
     "eslint-plugin-prettier": "^3.3.1",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "microbundle": "^0.13.3",
     "nodemon": "^2.0.7",
     "prettier": "2.0.5",
     "ts-jest": "^26.0.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "minimist": "^1.2.5",
