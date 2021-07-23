@@ -1,0 +1,29 @@
+import { render, RenderResult } from "@testing-library/react";
+
+import { {{ component }} } from "./{{ component }}";
+
+describe("Tests for {{ component }}", () => {
+    let renderResult: RenderResult;
+
+    beforeEach(() => {
+        renderResult = renderLolzOne();
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it("{{ component }} should be rendered", () => {
+        // Arrange
+        const { baseElement } = renderResult;
+
+        // Act
+
+        // Assert
+        expect(baseElement).toBeTruthy();
+    });
+});
+
+function renderLolzOne(): RenderResult {
+    return render(<{{ component }} />);
+}

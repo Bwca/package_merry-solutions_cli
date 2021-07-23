@@ -20,6 +20,6 @@ export async function generateItem({ dictionaryOfReplacements, itemFolder, itemN
     const fileContents = await readFile(join(itemTemplatesDir, template));
     const parsed = render(fileContents.toString(), dictionaryOfReplacements);
     const parsedFilePath = join(itemFolder, fileNamesToGenerate[i]);
-    writeFile(parsedFilePath, parsed);
+    await writeFile(parsedFilePath, parsed);
   });
 }
