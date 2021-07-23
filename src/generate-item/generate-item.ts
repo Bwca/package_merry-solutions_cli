@@ -7,7 +7,7 @@ import { UserInput } from '../shared/models';
 
 export async function generateItem({ dictionaryOfReplacements, itemFolder, itemName, itemType, templatesRoot }: UserInput): Promise<void> {
   const itemTemplatesDir = join(templatesRoot, itemType);
-  const templateFileNames = await readDir(itemTemplatesDir);
+  const templateFileNames: string[] = await readDir(itemTemplatesDir);
 
   const regexp = new RegExp(`^${itemType}(.+)$`, 'g');
   const fileNamesToGenerate = templateFileNames.map((i) => i.replace(regexp, `${itemName}$1`).replace(/\.mustache$/g, ''));

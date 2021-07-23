@@ -5,11 +5,12 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "microbundle --sourcemap=false --compress --format=cjs",
-    "parcel": "parcel build src/index.ts --no-source-maps",
+    "parcel": "parcel build src/index.ts --no-source-maps --target node",
     "dev": "nodemon",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest",
-    "cast": "cast"
+    "cast": "cast",
+    "webpack": "webpack"
   },
   "husky": {
     "hooks": {}
@@ -53,7 +54,10 @@
     "parcel-bundler": "^1.12.5",
     "prettier": "2.0.5",
     "ts-jest": "^26.0.0",
-    "typescript": "^4.3.5"
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.5",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
   },
   "dependencies": {
     "minimist": "^1.2.5",
