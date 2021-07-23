@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { getUserInput } from './get-user-input';
 import { generateItem } from './generate-item';
 
