@@ -16,10 +16,12 @@ export async function generateItem({ dictionaryOfReplacements, itemFolder, itemN
     recursive: true,
   });
 
-  templateFileNames.forEach(async (template, i) => {
-    const fileContents = await readFile(join(itemTemplatesDir, template));
-    const parsed = render(fileContents.toString(), dictionaryOfReplacements);
-    const parsedFilePath = join(itemFolder, fileNamesToGenerate[i]);
-    await writeFile(parsedFilePath, parsed);
-  });
+  await Promise.all(
+    templateFileNames.map(async (template, i) => {
+      const fileContents = await readFile(join(itemTemplatesDir, template));
+      const parsed = render(fileContents.toString(), dictionaryOfReplacements);
+      const parsedFilePath = join(itemFolder, fileNamesToGenerate[i]);
+      await writeFile(parsedFilePath, parsed);
+    })
+  );
 }

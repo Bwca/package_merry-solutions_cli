@@ -4,7 +4,7 @@ const ShebangPlugin = require('webpack-shebang-plugin');
 module.exports = {
   entry: './src/index.ts',
   target: 'node',
-
+  mode: 'production',
   module: {
     rules: [
       {
@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [new ShebangPlugin()],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
     fallback: {
       fs: false,
       path: false,

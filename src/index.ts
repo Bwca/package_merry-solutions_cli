@@ -5,5 +5,5 @@ import { generateItem } from './generate-item';
 
 void (async function main() {
   const input = getUserInput();
-  generateItem(input);
+  await generateItem(input);
 })();
