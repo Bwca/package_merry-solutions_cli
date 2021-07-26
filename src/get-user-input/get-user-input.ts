@@ -3,6 +3,7 @@ import { join } from 'path';
 import minimist, { ParsedArgs } from 'minimist';
 
 import { UserInput } from '../shared/models';
+import { getItemNameFromPath } from './get-item-name-from-path';
 
 export function getUserInput(): UserInput {
   const args = minimist(process.argv.slice(2)) as Args;
@@ -18,7 +19,7 @@ export function getUserInput(): UserInput {
 
   const currentWorkingDirectory = process.cwd();
   itemFolder ??= join(currentWorkingDirectory, `src/${path}`) ;
-  itemName ??= (path.match(/\/?(?<itemName>[^\/]+)$/)?.groups as { itemName: string }).itemName;
+  itemName ??= getItemNameFromPath(path);
   templatesRoot ??=  `${__dirname}/../../templates/`;
 
   return {

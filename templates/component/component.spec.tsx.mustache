@@ -6,7 +6,7 @@ describe("Tests for {{ component }}", () => {
     let renderResult: RenderResult;
 
     beforeEach(() => {
-        renderResult = renderLolzOne();
+        renderResult = render{{ component }}();
     });
 
     afterEach(() => {
@@ -24,6 +24,6 @@ describe("Tests for {{ component }}", () => {
     });
 });
 
-function renderLolzOne(): RenderResult {
+function render{{ component }}(): RenderResult {
     return render(<{{ component }} />);
 }
