@@ -11,7 +11,7 @@ export async function writeFiles({
   dictionaryOfReplacements,
   fileNamesToGenerate,
 }: WriteFilesPayload) {
-  mkDir(itemFolder, {
+  await mkDir(itemFolder, {
     recursive: true,
   });
 
