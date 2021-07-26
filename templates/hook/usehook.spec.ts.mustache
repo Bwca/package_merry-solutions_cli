@@ -1,0 +1,24 @@
+import {
+    renderHook,
+    RenderResult,
+    WaitForNextUpdate,
+} from "@testing-library/react-hooks";
+
+import { use{{ hook }} } from './use{{ hook }}';
+
+describe("Tests for {{ hook }}", () => {
+    let hook: RenderResult;
+    let waitForNextUpdate: WaitForNextUpdate;
+
+    beforeEach(() => {
+        const { result, waitForNextUpdate: wait } = renderHook(() =>
+            use{{ hook }}()
+        );
+        hook = result;
+        waitForNextUpdate = wait;
+    });
+
+    it("Hook should be created", () => {
+        expect(hook).toBeTruthy();
+    });
+});
