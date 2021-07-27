@@ -56,4 +56,4 @@ Now simply invoke `Cast` to create new files based on the provided templates:
 npx github:bwca/cast shared/components/MyComponent --itemType=component --templatesRoot=./templates/
 ```
 
-See sample templates in the templates folder of this repo or check the demo repo for templates folder and commands for generating files in `package.json`.
+See sample templates in the templates folder of this repo or check the [demo react repo](https://github.com/Bwca/demo__cast) for templates folder and commands for generating files in `package.json`.
