@@ -21,6 +21,10 @@
   "bin": {
     "cast": "./dist/index.js"
   },
+  "files": [
+    "dist/**",
+    "templates/**"
+  ],
   "author": {
     "name": "Volodymyr Yepishev",
     "email": "yepishevv@gmail.com"

@@ -20,7 +20,7 @@ export function getUserInput(): UserInput {
   const currentWorkingDirectory = process.cwd();
   itemFolder ??= join(currentWorkingDirectory, `src/${path}`) ;
   itemName ??= getItemNameFromPath(path);
-  templatesRoot ??=  `${__dirname}/../../templates/`;
+  templatesRoot ??=  join(__dirname, '../templates/');
 
   return {
     itemFolder,
