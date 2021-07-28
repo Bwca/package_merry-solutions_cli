@@ -1,7 +1,18 @@
 {
     "name": "@merry-solutions/cli",
-    "version": "1.0.0",
-    "description": "",
+    "version": "1.0.1",
+    "description": "Generate application components based on templates using command line.",
+    "keywords": [
+        "cli",
+        "command line",
+        "command-line",
+        "component",
+        "generate component",
+        "react-cli",
+        "react",
+        "template",
+        "web"
+    ],
     "main": "./dist/index.js",
     "scripts": {
         "dev": "nodemon",
@@ -27,17 +38,17 @@
     ],
     "author": {
         "name": "Volodymyr Yepishev",
-        "email": "yepishevv@gmail.com"
+        "email": "i.m.bwca@gmail.com"
     },
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Bwca/ts-template-repo.git"
+        "url": "git+https://github.com/Bwca/merry-solutions__cli.git"
     },
     "bugs": {
-        "url": "https://github.com/Bwca/ts-template-repo/issues"
+        "url": "https://github.com/Bwca/merry-solutions__cli/issues"
     },
-    "homepage": "https://github.com/Bwca/ts-template-repo#readme",
+    "homepage": "https://github.com/Bwca/merry-solutions__cli#readme",
     "devDependencies": {
         "@types/jest": "^25.2.2",
         "@types/minimist": "^1.2.2",

@@ -10,23 +10,43 @@ Use existing presets or create your own with `moustache` templates.
 
 Install as dev dependency
 
-`npm i -D @merry-solutions/cli`
+```node
+npm i -D @merry-solutions/cli
+```
 
 Add to scripts in the `package.json`.
 
-`"cast": "cast"`
+```ts
+"cast": "cast"
+```
+
+Or simply run from command line without installation:
+
+```node
+npx @merry-solutions/cli {some arguments here}
+```
+
+i.e.
+
+```node
+npx @merry-solutions/cli cool-stuff/CoolHook --itemType=hook
+```
 
 Generate an item using one of the preset templates, currently component and hook creating is supported.
 
 Example to generate a hook:
 
-`npm run cast -- shared/hooks/MyAwesomeHook --itemType=hook`
+```node
+npm run cast -- shared/hooks/MyAwesomeHook --itemType=hook
+```
 
 Would generate a hook in `src/shared/hooks/MyAwesomeHook` based on the preset template.
 
 Example to generate a component:
 
-`npm run cast -- components/MyAwesomeComponent --itemType=component`
+```node
+npm run cast -- components/MyAwesomeComponent --itemType=component
+```
 
 Would generate a component in `src/components/MyAwesomeComponent` based on the preset template.
 
@@ -70,3 +90,5 @@ npm run cast -- shared/components/MyComponent --itemType=component --templatesRo
 ```
 
 See sample templates in the templates folder of this repo or check the [demo react repo](https://github.com/Bwca/demo__cast) for templates folder and commands for generating files in `package.json`.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/bwca)
