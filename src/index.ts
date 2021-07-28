@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { getUserInput } from './get-user-input';
 import { generateItem } from './generate-item';
+import { getUserInput } from './get-user-input';
 
 void (async function main() {
-  const input = getUserInput();
-  await generateItem(input);
+    const input = getUserInput();
+    await generateItem(input);
 })();

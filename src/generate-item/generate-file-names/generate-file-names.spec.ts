@@ -2,84 +2,84 @@ import * as fileUtils from '../file-utils';
 import { generateFileNames } from './generate-file-names';
 
 describe('Tests for generateFileNames for component', () => {
-  const ARGS: [string, string, string] = ['./templates', 'component', 'Awesome'];
+    const ARGS: [string, string, string] = ['./templates', 'component', 'Awesome'];
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest
-      .spyOn(fileUtils, 'readDir')
-      .mockResolvedValueOnce([
-        'component.model.ts.mustache',
-        'component.module.scss.mustache',
-        'component.spec.tsx.mustache',
-        'component.tsx.mustache',
-        'index.ts.mustache',
-      ] as any);
-  });
+    beforeEach(() => {
+        jest.clearAllMocks();
+        jest
+            .spyOn(fileUtils, 'readDir')
+            .mockResolvedValueOnce([
+                'component.model.ts.mustache',
+                'component.module.scss.mustache',
+                'component.spec.tsx.mustache',
+                'component.tsx.mustache',
+                'index.ts.mustache',
+            ] as any);
+    });
 
-  it('Should produce an array of file names to generate', async () => {
+    it('Should produce an array of file names to generate', async () => {
     // Arrange
-    const expectedFileNames = ['Awesome.model.ts', 'Awesome.module.scss', 'Awesome.spec.tsx', 'Awesome.tsx', 'index.ts'];
+        const expectedFileNames = ['Awesome.model.ts', 'Awesome.module.scss', 'Awesome.spec.tsx', 'Awesome.tsx', 'index.ts'];
 
-    // Act
-    const { fileNamesToGenerate } = await generateFileNames(...ARGS);
+        // Act
+        const { fileNamesToGenerate } = await generateFileNames(...ARGS);
 
-    // Assert
-    expect(fileNamesToGenerate).toEqual(expectedFileNames);
-  });
-  it('Should produce an array of template file names', async () => {
+        // Assert
+        expect(fileNamesToGenerate).toEqual(expectedFileNames);
+    });
+    it('Should produce an array of template file names', async () => {
     // Arrange
-    const expectedFileNames = [
-      'component.model.ts.mustache',
-      'component.module.scss.mustache',
-      'component.spec.tsx.mustache',
-      'component.tsx.mustache',
-      'index.ts.mustache',
-    ];
+        const expectedFileNames = [
+            'component.model.ts.mustache',
+            'component.module.scss.mustache',
+            'component.spec.tsx.mustache',
+            'component.tsx.mustache',
+            'index.ts.mustache',
+        ];
 
-    // Act
-    const { templateFileNames } = await generateFileNames(...ARGS);
+        // Act
+        const { templateFileNames } = await generateFileNames(...ARGS);
 
-    // Assert
-    expect(templateFileNames).toEqual(expectedFileNames);
-  });
-  it('Should produce itemTemplatesDir', async () => {
+        // Assert
+        expect(templateFileNames).toEqual(expectedFileNames);
+    });
+    it('Should produce itemTemplatesDir', async () => {
     // Arrange
-    const expectedItemTemplatesDir = 'templates\\component';
+        const expectedItemTemplatesDir = 'templates\\component';
 
-    // Act
-    const { itemTemplatesDir } = await generateFileNames(...ARGS);
+        // Act
+        const { itemTemplatesDir } = await generateFileNames(...ARGS);
 
-    // Assert
-    expect(itemTemplatesDir).toEqual(expectedItemTemplatesDir);
-  });
+        // Assert
+        expect(itemTemplatesDir).toEqual(expectedItemTemplatesDir);
+    });
 });
 
 describe('Tests for generateFileNames for hook', () => {
-  const ARGS: [string, string, string] = ['./templates', 'hook', 'Awesome'];
-  beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(fileUtils, 'readDir').mockResolvedValue(['index.ts.mustache', 'usehook.spec.ts.mustache', 'usehook.ts.mustache'] as any);
-  });
+    const ARGS: [string, string, string] = ['./templates', 'hook', 'Awesome'];
+    beforeEach(() => {
+        jest.clearAllMocks();
+        jest.spyOn(fileUtils, 'readDir').mockResolvedValue(['index.ts.mustache', 'usehook.spec.ts.mustache', 'usehook.ts.mustache'] as any);
+    });
 
-  it('Should produce an array of hook file names to generate', async () => {
+    it('Should produce an array of hook file names to generate', async () => {
     // Arrange
-    const expectedFileNames = ['index.ts', 'useAwesome.spec.ts', 'useAwesome.ts'];
+        const expectedFileNames = ['index.ts', 'useAwesome.spec.ts', 'useAwesome.ts'];
 
-    // Act
-    const { fileNamesToGenerate } = await generateFileNames(...ARGS);
+        // Act
+        const { fileNamesToGenerate } = await generateFileNames(...ARGS);
 
-    // Assert
-    expect(fileNamesToGenerate).toEqual(expectedFileNames);
-  });
-  it('Should produce an array of hook template file names', async () => {
+        // Assert
+        expect(fileNamesToGenerate).toEqual(expectedFileNames);
+    });
+    it('Should produce an array of hook template file names', async () => {
     // Arrange
-    const expectedFileNames = ['index.ts.mustache', 'usehook.spec.ts.mustache', 'usehook.ts.mustache'];
+        const expectedFileNames = ['index.ts.mustache', 'usehook.spec.ts.mustache', 'usehook.ts.mustache'];
 
-    // Act
-    const { templateFileNames } = await generateFileNames(...ARGS);
+        // Act
+        const { templateFileNames } = await generateFileNames(...ARGS);
 
-    // Assert
-    expect(templateFileNames).toEqual(expectedFileNames);
-  });
+        // Assert
+        expect(templateFileNames).toEqual(expectedFileNames);
+    });
 });

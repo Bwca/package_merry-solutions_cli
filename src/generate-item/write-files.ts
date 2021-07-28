@@ -5,24 +5,24 @@ import { render } from 'mustache';
 import { mkDir, readFile, writeFile } from './file-utils';
 
 export async function writeFiles({
-  itemFolder,
-  templateFileNames,
-  itemTemplatesDir,
-  dictionaryOfReplacements,
-  fileNamesToGenerate,
+    itemFolder,
+    templateFileNames,
+    itemTemplatesDir,
+    dictionaryOfReplacements,
+    fileNamesToGenerate,
 }: WriteFilesPayload) {
-  await mkDir(itemFolder, {
-    recursive: true,
-  });
+    await mkDir(itemFolder, {
+        recursive: true,
+    });
 
-  await Promise.all(
-    templateFileNames.map(async (template, i) => {
-      const fileContents = await readFile(join(itemTemplatesDir, template));
-      const parsed = render(fileContents.toString(), dictionaryOfReplacements);
-      const parsedFilePath = join(itemFolder, fileNamesToGenerate[i]);
-      await writeFile(parsedFilePath, parsed);
-    })
-  );
+    await Promise.all(
+        templateFileNames.map(async (template, i) => {
+            const fileContents = await readFile(join(itemTemplatesDir, template));
+            const parsed = render(fileContents.toString(), dictionaryOfReplacements);
+            const parsedFilePath = join(itemFolder, fileNamesToGenerate[i]);
+            await writeFile(parsedFilePath, parsed);
+        })
+    );
 }
 
 interface WriteFilesPayload {
