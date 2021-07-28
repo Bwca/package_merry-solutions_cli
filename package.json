@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "nodemon",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "eslint */**/*.ts --quiet --fix",
     "test": "jest",
     "cast": "cast",
     "build": "webpack"
@@ -42,8 +42,8 @@
     "@types/jest": "^25.2.2",
     "@types/minimist": "^1.2.2",
     "@types/mustache": "^4.1.2",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
