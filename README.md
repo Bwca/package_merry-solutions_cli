@@ -2,41 +2,54 @@
 
 ## Well, what is it?
 
-_Cast_ is a cli-tool designed to do the heavylifting when developing components requiring alot of boilerplate. It is as easy as casting figures in a mold.
+**@merry-solutions/cli** is a cli-tool designed to do the heavylifting when developing components requiring alot of boilerplate. It is originally intended for use with React, but can also be used for generating basically any set of files based on `moustache` templates.
+
+Use existing presets or create your own with `moustache` templates.
 
 ## How to use it
 
-1. create a folder for templates;
-2. populate the template folder with entity subfolders;
-3. create moustache templates to process in entity subfolders;
-4. invoke _Cast_ to generate files based on the given templates.
+Install as dev dependency
 
-## Example with React
+`npm i -D @merry-solutions/cli`
 
-Let's assume you have a React app with typescript and every time you create a component you need to generate a component folder with 5 files:
+Add to scripts in the `package.json`.
 
-- component.tsx for the component itself;
-- component.model.ts to hold the props interface;
-- component.module.scss to encapsulate the stylesheet;
-- component.spec.tsx for tests;
-- index.ts for exporting the component.
+`"cast": "cast"`
 
-That's alot of work, with _Cast_ you first create a folder and populate it with templates with the following naming convention: `template/{entity}`, i.e. `template/component` in our case.
+Generate an item using one of the preset templates, currently component and hook creating is supported.
 
-The file structure would roughly look like this:
+Example to generate a hook:
+
+`npm run cast -- shared/hooks/MyAwesomeHook --itemType=hook`
+
+Would generate a hook in `src/shared/hooks/MyAwesomeHook` based on the preset template.
+
+Example to generate a component:
+
+`npm run cast -- components/MyAwesomeComponent --itemType=component`
+
+Would generate a component in `src/components/MyAwesomeComponent` based on the preset template.
+
+## Creating your own templates
+
+Is pretty easy. You need a folder for templates, which would hold a collection of subfolders, each named same as the eitity you are attempting to create, i.e. the default templates folder has 2 subfolders: `component` and `hook`, so you can only create these two if you're using defaults.
+
+Let's assume you want to create your own template for component, you would have to create a directory with a subfolder named after the type of the item you plan to create, i.e. `my-templates/component`.
 
 ```txt
 project
 └───src
 │
-└───templates
+└───my-templates
 │   └───component
 │       │   component.model.ts.mustache
 │       │   component.tsx.mustache
 │       │   ...
 ```
 
-Add some `moustache` templates to process, note that filenames need to contain entity name so they will be renamed in the process, i.e.:
+Place some `moustache` templates inside, note that if file name contains the subdirectory name in it, it will be swapped for the item name during file generation, i.e. `component.tsx.mustache` => `SomeComponent.tsx`.
+
+The variable used in templates should hold same name as the subfolder, i.e. for the `component` we'd have:
 
 ```ts
 // component.tsx.mustache
@@ -50,10 +63,10 @@ export const {{ component }}: FC<{{ component }}Props> = ({}: {{ component }}Pro
 };
 ```
 
-Now simply invoke `Cast` to create new files based on the provided templates:
+Now simply invoke `cast` to create new files based on the provided templates by passing the template root as the `templatesRoot` param, i.e.:
 
 ```ts
-npx github:bwca/cast shared/components/MyComponent --itemType=component --templatesRoot=./templates/
+npm run cast -- shared/components/MyComponent --itemType=component --templatesRoot=./templates/
 ```
 
 See sample templates in the templates folder of this repo or check the [demo react repo](https://github.com/Bwca/demo__cast) for templates folder and commands for generating files in `package.json`.

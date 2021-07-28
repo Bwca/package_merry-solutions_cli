@@ -1,67 +1,67 @@
 {
-  "name": "cast",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./dist/index.js",
-  "scripts": {
-    "dev": "nodemon",
-    "lint": "eslint */**/*.ts --quiet --fix",
-    "test": "jest",
-    "cast": "cast",
-    "build": "webpack"
-  },
-  "husky": {
-    "hooks": {}
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix"
-    ]
-  },
-  "bin": {
-    "cast": "./dist/index.js"
-  },
-  "files": [
-    "dist/**",
-    "templates/**"
-  ],
-  "author": {
-    "name": "Volodymyr Yepishev",
-    "email": "yepishevv@gmail.com"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bwca/ts-template-repo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Bwca/ts-template-repo/issues"
-  },
-  "homepage": "https://github.com/Bwca/ts-template-repo#readme",
-  "devDependencies": {
-    "@types/jest": "^25.2.2",
-    "@types/minimist": "^1.2.2",
-    "@types/mustache": "^4.1.2",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "eslint": "^7.0.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.3.2",
-    "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "nodemon": "^2.0.7",
-    "prettier": "2.0.5",
-    "ts-jest": "^26.0.0",
-    "ts-loader": "^9.2.3",
-    "typescript": "^4.3.5",
-    "webpack": "^5.46.0",
-    "webpack-cli": "^4.7.2",
-    "webpack-shebang-plugin": "^1.1.6"
-  },
-  "dependencies": {
-    "minimist": "^1.2.5",
-    "mustache": "^4.2.0"
-  }
+    "name": "@merry-solutions/cli",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/index.js",
+    "scripts": {
+        "dev": "nodemon",
+        "lint": "eslint */**/*.ts --quiet --fix",
+        "test": "jest",
+        "cast": "cast",
+        "build": "webpack"
+    },
+    "husky": {
+        "hooks": {}
+    },
+    "lint-staged": {
+        "*.{js,ts,tsx}": [
+            "eslint --fix"
+        ]
+    },
+    "bin": {
+        "cast": "./dist/index.js"
+    },
+    "files": [
+        "dist/**",
+        "templates/**"
+    ],
+    "author": {
+        "name": "Volodymyr Yepishev",
+        "email": "yepishevv@gmail.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Bwca/ts-template-repo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Bwca/ts-template-repo/issues"
+    },
+    "homepage": "https://github.com/Bwca/ts-template-repo#readme",
+    "devDependencies": {
+        "@types/jest": "^25.2.2",
+        "@types/minimist": "^1.2.2",
+        "@types/mustache": "^4.1.2",
+        "@typescript-eslint/eslint-plugin": "^4.28.5",
+        "@typescript-eslint/parser": "^4.28.5",
+        "eslint": "^7.0.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jest": "^24.3.2",
+        "eslint-plugin-prettier": "^3.3.1",
+        "husky": "^4.2.5",
+        "jest": "^26.0.1",
+        "nodemon": "^2.0.7",
+        "prettier": "2.0.5",
+        "ts-jest": "^26.0.0",
+        "ts-loader": "^9.2.3",
+        "typescript": "^4.3.5",
+        "webpack": "^5.46.0",
+        "webpack-cli": "^4.7.2",
+        "webpack-shebang-plugin": "^1.1.6"
+    },
+    "dependencies": {
+        "minimist": "^1.2.5",
+        "mustache": "^4.2.0"
+    }
 }
