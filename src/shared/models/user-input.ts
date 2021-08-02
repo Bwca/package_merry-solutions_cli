@@ -1,7 +1,7 @@
 export interface UserInput {
-  itemName: string;
-  itemFolder: string;
-  templatesRoot: string;
-  itemType: string;
-  dictionaryOfReplacements: Record<string, string>;
+    itemParentFolder: string;
+    templatesRoot: string;
+    itemFileName: string;
+    itemType: string;
+    dictionaryOfReplacements: Record<string, string>;
 }
