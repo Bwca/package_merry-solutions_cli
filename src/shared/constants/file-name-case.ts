@@ -1,1 +1,1 @@
-export type FileNameCase = 'kebab' | 'Pascal';
+export type FileNameCase = 'camelCase' | 'PascalCase';

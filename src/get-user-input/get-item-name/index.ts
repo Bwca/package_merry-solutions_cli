@@ -1,1 +1,1 @@
-export { getFileName } from './get-item-name';
+export { getItemName  } from './get-item-name';
