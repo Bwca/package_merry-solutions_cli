@@ -3,8 +3,10 @@ import { join } from 'path';
 
 import minimist, { ParsedArgs } from 'minimist';
 
+import { FileNameCase } from '../shared/constants';
 import { UserInput } from '../shared/models';
-import { getItemNameFromPath } from './get-item-name-from-path';
+import { getItemFileNameFromPath } from './get-item-file-name-from-path';
+import { getItemName } from './get-item-name';
 
 export function getUserInput(): UserInput {
     const args = minimist(process.argv.slice(2)) as Args;
@@ -13,19 +15,22 @@ export function getUserInput(): UserInput {
         _: [path],
         itemType,
         itemFolder,
-        itemName,
+        itemFileName,
         templatesRoot,
+        nameCase,
         ...dictionaryOfReplacements
     } = args;
 
     const currentWorkingDirectory = process.cwd();
+    nameCase ??= 'PascalCase';
     itemFolder ??= join(currentWorkingDirectory, `src/${path}`) ;
-    itemName ??= getItemNameFromPath(path);
+    itemFileName ??= getItemFileNameFromPath(path);
     templatesRoot ??=  join(__dirname, '../templates/');
+    const itemName = getItemName(itemFileName, nameCase);
 
     return {
-        itemFolder,
-        itemName,
+        itemParentFolder: itemFolder,
+        itemFileName,
         itemType,
         templatesRoot,
         dictionaryOfReplacements: {...dictionaryOfReplacements, [itemType]: itemName}
@@ -35,6 +40,7 @@ export function getUserInput(): UserInput {
 interface Args extends ParsedArgs {
   itemType: string;
   itemFolder?: string;
-  itemName?: string;
+  itemFileName?: string;
   templatesRoot?: string;
+  nameCase?: FileNameCase
 }
