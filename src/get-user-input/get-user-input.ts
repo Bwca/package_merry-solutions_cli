@@ -34,8 +34,6 @@ export function getUserInput(): UserInput {
 
 interface Args extends ParsedArgs {
     itemType: string;
-    itemFolder?: string;
-    itemFileName?: string;
     templatesRoot?: string;
     nameCase?: FileNameCase;
 }
