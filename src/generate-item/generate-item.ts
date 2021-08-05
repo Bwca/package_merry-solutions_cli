@@ -4,7 +4,7 @@ import { writeFiles } from './write-files';
 
 export async function generateItem({
     dictionaryOfReplacements,
-    itemParentFolder,
+    itemFolder,
     itemType,
     templatesRoot,
     itemFileName,
@@ -18,7 +18,7 @@ export async function generateItem({
     writeFiles({
         dictionaryOfReplacements,
         fileNamesToGenerate,
-        itemParentFolder,
+        itemFolder,
         itemTemplatesDir,
         templateFileNames,
     });

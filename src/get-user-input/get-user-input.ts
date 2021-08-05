@@ -14,33 +14,28 @@ export function getUserInput(): UserInput {
     let {
         _: [path],
         itemType,
-        itemFolder,
-        itemFileName,
-        templatesRoot,
-        nameCase,
+        nameCase = 'PascalCase',
+        templatesRoot = join(__dirname, '../templates/'),
         ...dictionaryOfReplacements
     } = args;
 
-    const currentWorkingDirectory = process.cwd();
-    nameCase ??= 'PascalCase';
-    itemFolder ??= join(currentWorkingDirectory, `src/${path}`) ;
-    itemFileName ??= getItemFileNameFromPath(path);
-    templatesRoot ??=  join(__dirname, '../templates/');
+    const itemFolder = join(process.cwd(), `src/${path}`);
+    const itemFileName = getItemFileNameFromPath(path);
     const itemName = getItemName(itemFileName, nameCase);
 
     return {
-        itemParentFolder: itemFolder,
+        itemFolder,
         itemFileName,
         itemType,
         templatesRoot,
-        dictionaryOfReplacements: {...dictionaryOfReplacements, [itemType]: itemName}
+        dictionaryOfReplacements: { ...dictionaryOfReplacements, [itemType]: itemName, fileName: itemFileName },
     };
 }
 
 interface Args extends ParsedArgs {
-  itemType: string;
-  itemFolder?: string;
-  itemFileName?: string;
-  templatesRoot?: string;
-  nameCase?: FileNameCase
+    itemType: string;
+    itemFolder?: string;
+    itemFileName?: string;
+    templatesRoot?: string;
+    nameCase?: FileNameCase;
 }
