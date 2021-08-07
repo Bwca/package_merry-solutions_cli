@@ -10,7 +10,7 @@ export async function writeFiles({
     itemTemplatesDir,
     dictionaryOfReplacements,
     fileNamesToGenerate,
-}: WriteFilesPayload) {
+}: WriteFilesPayload): Promise<void> {
     await mkDir(itemFolder, {
         recursive: true,
     });
@@ -26,9 +26,9 @@ export async function writeFiles({
 }
 
 interface WriteFilesPayload {
-  dictionaryOfReplacements: Record<string, string>;
-  fileNamesToGenerate: string[];
-  itemFolder: string;
-  itemTemplatesDir: string;
-  templateFileNames: string[];
+    dictionaryOfReplacements: Record<string, string>;
+    fileNamesToGenerate: string[];
+    itemFolder: string;
+    itemTemplatesDir: string;
+    templateFileNames: string[];
 }

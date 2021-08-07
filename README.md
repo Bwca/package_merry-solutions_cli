@@ -50,6 +50,27 @@ npm run cast -- components/MyAwesomeComponent --itemType=component
 
 Would generate a component in `src/components/MyAwesomeComponent` based on the preset template.
 
+## Full list of params
+
+**itemType** = required, should correspond to the name of a subfolder in the provided `templatesRoot` directory.
+
+**templatesRoot** = optional, relative path to your custom folder with tempaltes, see below how to create your own templates.
+
+**nameCase** = optional, name case for the entity name inside the template file, can be either set to `camelCase` or `PascalCase`. Defaults to `PascalCase`, is used to convert file name to entity name if the file name contains dashes or underscores.
+
+Also can add any additional amount of `--key=value` pairs for replacements. I.e. if your template looks like:
+
+```mustache
+// ./templates/random/random.txt.mustache
+Hello, {{ name }}! I am {{ reaction }} to {{ verb }} you!
+```
+
+You can generate a file from it using the following command (yes, it is included in the default templates folder for demo purposes):
+
+```node
+npx @merry-solutions/cli --itemType=random  some-random-stuff/happy-to-see-bob-file --name=Bob --reaction=happy --verb=see
+```
+
 ## Creating your own templates
 
 Is pretty easy. You need a folder for templates, which would hold a collection of subfolders, each named same as the eitity you are attempting to create, i.e. the default templates folder has 2 subfolders: `component` and `hook`, so you can only create these two if you're using defaults.
