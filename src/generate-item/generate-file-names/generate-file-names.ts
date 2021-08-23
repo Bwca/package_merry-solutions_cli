@@ -13,6 +13,7 @@ export async function generateFileNames({ fileName, itemType, templatesRoot }: G
         fileNamesToGenerate,
         itemTemplatesDir,
         templateFileNames,
+        subfoldersToGenerate: []
     };
 }
 
@@ -26,4 +27,5 @@ interface GenerateFileNamesReturn {
     fileNamesToGenerate: string[];
     itemTemplatesDir: string;
     templateFileNames: string[];
+    subfoldersToGenerate: string[];
 }

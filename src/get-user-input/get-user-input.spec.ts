@@ -7,7 +7,7 @@ describe('Tests for getUserInput', () => {
     it('Should correctly parse dictionaryOfReplacements', () => {
         // Arrange
         const expectedDictionaryOfReplacements = {
-            component: 'MyAwesomeComponent',
+            fileName: 'MyAwesomeComponent',
         };
 
         // Act
