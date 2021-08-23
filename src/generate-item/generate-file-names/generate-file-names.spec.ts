@@ -111,8 +111,12 @@ describe('Tests for generateFileNames for component with nested folders', () => 
                 'index.ts.mustache',
                 'nested-folder',
             ] as any)
-            .mockResolvedValueOnce(['component.tsx.mustache', 'index.ts.mustache', 'deeper-nested-folder'] as any)
-            .mockResolvedValueOnce(['component.tsx.mustache', 'index.ts.mustache'] as any);
+            .mockResolvedValueOnce([
+                'nested-folder.component.tsx.mustache',
+                'nested-folder.index.ts.mustache',
+                'deeper-nested-folder',
+            ] as any)
+            .mockResolvedValueOnce(['deeper-nested-folder.component.tsx.mustache', 'deeper-nested-folder.index.ts.mustache'] as any);
     });
 
     it('Should traverse all 3 directories', async () => {
@@ -126,7 +130,7 @@ describe('Tests for generateFileNames for component with nested folders', () => 
         expect(dirSpy).toHaveBeenCalledTimes(expectedDirCalls);
     });
 
-    it.skip('Should produce an array of file names and folders to generate', async () => {
+    it('Should produce an array of file names and folders to generate', async () => {
         // Arrange
         const expectedFileNames = [
             'Awesome.model.ts',
@@ -134,10 +138,10 @@ describe('Tests for generateFileNames for component with nested folders', () => 
             'Awesome.spec.tsx',
             'Awesome.tsx',
             'index.ts',
-            'nested-folder/Awesome.tsx',
-            'nested-folder/index.tsx',
-            'nested-folder/deeper-nested-folder/Awesome.tsx',
-            'nested-folder/deeper-nested-folder/index.ts',
+            'nested-folder/nested-folder.Awesome.tsx',
+            'nested-folder/nested-folder.index.ts',
+            'nested-folder/deeper-nested-folder/deeper-nested-folder.Awesome.tsx',
+            'nested-folder/deeper-nested-folder/deeper-nested-folder.index.ts',
         ];
 
         // Act
