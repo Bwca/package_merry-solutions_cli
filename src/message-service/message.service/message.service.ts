@@ -25,9 +25,6 @@ class MessageService {
             case 'error':
                 return chalk.red.bold(text);
 
-            case 'prompt':
-                return chalk.cyan.bold(text);
-
             default:
                 return text;
         }

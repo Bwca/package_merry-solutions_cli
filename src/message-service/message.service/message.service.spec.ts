@@ -7,7 +7,7 @@ describe('MessageService tests', () => {
         const consoleSpy = jest.spyOn(global.console, 'log').mockImplementation(jest.fn());
         const message: Message = {
             text: 'This is a text message',
-            type: 'info',
+            type: 'success',
         };
 
         // Act
