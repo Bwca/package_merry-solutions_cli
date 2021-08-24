@@ -2,6 +2,7 @@ import { join } from 'path';
 
 import { render } from 'mustache';
 
+import { messageService } from '../message-service';
 import { mkDir, readFile, writeFile } from './file-utils';
 
 export async function writeFiles({
@@ -12,16 +13,27 @@ export async function writeFiles({
     fileNamesToGenerate,
     subfoldersToGenerate,
 }: WriteFilesPayload): Promise<void> {
-    await Promise.all([itemFolder, ...subfoldersToGenerate].map((f) => mkDir(f, { recursive: true })));
+    const folderPaths = [itemFolder].concat(subfoldersToGenerate.map((f) => join(itemFolder, f)));
+    await Promise.all(folderPaths.map((f) => mkDir(f, { recursive: true })));
 
+    messageService.out({
+        text: `\nGenerated folders: \n${folderPaths.join('\n')}`,
+        type: 'success',
+    });
+
+    const filePathsToGenerate = fileNamesToGenerate.map((f) => join(itemFolder, f));
     await Promise.all(
         templateFileNames.map(async (template, i) => {
             const fileContents = await readFile(join(itemTemplatesDir, template));
             const parsed = render(fileContents.toString(), dictionaryOfReplacements);
-            const parsedFilePath = join(itemFolder, fileNamesToGenerate[i]);
-            await writeFile(parsedFilePath, parsed);
+            await writeFile(filePathsToGenerate[i], parsed);
         })
     );
+
+    messageService.out({
+        text: `\nGenerated files: \n${filePathsToGenerate.join('\n')}`,
+        type: 'success',
+    });
 }
 
 interface WriteFilesPayload {

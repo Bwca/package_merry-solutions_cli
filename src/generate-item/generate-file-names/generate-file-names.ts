@@ -10,7 +10,8 @@ export async function generateFileNames({ fileName, itemType, templatesRoot }: G
     let fileNamesToGenerate: string[] = [];
     let subfoldersToGenerate: string[] = [];
 
-    const regexp = new RegExp(`(.*)${itemType}(.*)`, 'g');
+    const regexp = new RegExp(`${itemType}`, 'g');
+    const swapPlaceHolderForFileName = (i: string) => i.replace(regexp, `${fileName}`);
 
     await traverseDir(itemTemplatesDir);
 
@@ -31,12 +32,13 @@ export async function generateFileNames({ fileName, itemType, templatesRoot }: G
         templateFileNames = templateFileNames.concat(files);
 
         const filesForGeneration = files
-            .map((i) => i.replace(regexp, `$1${fileName}$2`).replace(/\.mustache$/g, ''))
             .map((f) => join(fileSubdir, f))
-            .map((f) => f.replace(/\\/g, '/'));
+            .map((f) => f.replace(/\\/g, '/'))
+            .map(swapPlaceHolderForFileName)
+            .map((f) => f.replace(/\.mustache$/g, ''));
 
         fileNamesToGenerate = fileNamesToGenerate.concat(filesForGeneration);
-        subfoldersToGenerate = subfoldersToGenerate.concat(dirs);
+        subfoldersToGenerate = subfoldersToGenerate.concat(dirs.map(swapPlaceHolderForFileName));
 
         await Promise.all(dirs.map((d) => traverseDir(join(dir, d), join(fileSubdir, d))));
     }
