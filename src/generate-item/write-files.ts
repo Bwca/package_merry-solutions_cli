@@ -10,10 +10,9 @@ export async function writeFiles({
     itemTemplatesDir,
     dictionaryOfReplacements,
     fileNamesToGenerate,
+    subfoldersToGenerate,
 }: WriteFilesPayload): Promise<void> {
-    await mkDir(itemFolder, {
-        recursive: true,
-    });
+    await Promise.all([itemFolder, ...subfoldersToGenerate].map((f) => mkDir(f, { recursive: true })));
 
     await Promise.all(
         templateFileNames.map(async (template, i) => {
@@ -31,4 +30,5 @@ interface WriteFilesPayload {
     itemFolder: string;
     itemTemplatesDir: string;
     templateFileNames: string[];
+    subfoldersToGenerate: string[];
 }

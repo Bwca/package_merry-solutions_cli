@@ -1,5 +1,7 @@
 import { join } from 'path';
 
+import { messageService } from '../../message-service';
+
 import { readDir } from '../file-utils';
 
 export async function generateFileNames({ fileName, itemType, templatesRoot }: GenerateFileNamesPayload): Promise<GenerateFileNamesReturn> {
@@ -38,6 +40,13 @@ export async function generateFileNames({ fileName, itemType, templatesRoot }: G
 
         await Promise.all(dirs.map((d) => traverseDir(join(dir, d), join(fileSubdir, d))));
     }
+
+    messageService.out({
+        text: `File names to generate:\n\n${fileNamesToGenerate.map(
+            (i) => `${i}\n`
+        )}\nSubfolders to generate:\n\n${subfoldersToGenerate.map((i) => `${i}\n`)}`,
+        type: 'info',
+    });
 
     return {
         fileNamesToGenerate,

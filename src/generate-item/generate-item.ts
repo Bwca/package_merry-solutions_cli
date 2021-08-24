@@ -9,7 +9,7 @@ export async function generateItem({
     templatesRoot,
     itemFileName,
 }: UserInput): Promise<void> {
-    const { fileNamesToGenerate, itemTemplatesDir, templateFileNames } = await generateFileNames({
+    const { fileNamesToGenerate, itemTemplatesDir, templateFileNames, subfoldersToGenerate } = await generateFileNames({
         templatesRoot,
         itemType,
         fileName: itemFileName,
@@ -21,5 +21,6 @@ export async function generateItem({
         itemFolder,
         itemTemplatesDir,
         templateFileNames,
+        subfoldersToGenerate,
     });
 }
