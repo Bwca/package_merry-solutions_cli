@@ -42,11 +42,16 @@ export async function generateFileNames({ fileName, itemType, templatesRoot }: G
     }
 
     messageService.out({
-        text: `File names to generate:\n\n${fileNamesToGenerate.map(
-            (i) => `${i}\n`
-        )}\nSubfolders to generate:\n\n${subfoldersToGenerate.map((i) => `${i}\n`)}`,
+        text: `File names to generate:\n\n${fileNamesToGenerate.join('\n')}`,
         type: 'info',
     });
+
+    if (subfoldersToGenerate.length) {
+        messageService.out({
+            text: `Subfolders to generate:\n\n${subfoldersToGenerate.join('\n')}`,
+            type: 'info',
+        });
+    }
 
     return {
         fileNamesToGenerate,
