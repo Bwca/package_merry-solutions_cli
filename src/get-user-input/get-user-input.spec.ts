@@ -2,12 +2,14 @@ import { getUserInput } from './get-user-input';
 
 describe('Tests for getUserInput', () => {
     beforeEach(() => {
+        jest.clearAllMocks();
         process.argv = ['', '', 'some-path/components/MyAwesomeComponent', '--itemType=component', '--templatesRoot=./templates'];
     });
     it('Should correctly parse dictionaryOfReplacements', () => {
         // Arrange
         const expectedDictionaryOfReplacements = {
             component: 'MyAwesomeComponent',
+            fileName: 'MyAwesomeComponent',
         };
 
         // Act

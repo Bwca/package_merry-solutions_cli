@@ -15,11 +15,13 @@
     ],
     "main": "./dist/index.js",
     "scripts": {
+        "start": "ts-node src/index.ts",
         "dev": "nodemon",
         "lint": "eslint */**/*.ts --quiet --fix",
         "test": "jest",
         "cast": "cast",
-        "build": "webpack"
+        "build": "webpack",
+        "g:c": "ts-node src my-awesome-component --itemType=component --templatesRoot=./templates/"
     },
     "husky": {
         "hooks": {}
@@ -53,6 +55,7 @@
         "@types/jest": "^25.2.2",
         "@types/minimist": "^1.2.2",
         "@types/mustache": "^4.1.2",
+        "@types/node": "^16.7.1",
         "@typescript-eslint/eslint-plugin": "^4.28.5",
         "@typescript-eslint/parser": "^4.28.5",
         "eslint": "^7.0.0",
@@ -72,6 +75,7 @@
         "webpack-shebang-plugin": "^1.1.6"
     },
     "dependencies": {
+        "chalk": "^4.1.2",
         "minimist": "^1.2.5",
         "mustache": "^4.2.0"
     }

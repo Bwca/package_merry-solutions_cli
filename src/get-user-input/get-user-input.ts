@@ -10,7 +10,6 @@ import { getItemName } from './get-item-name';
 
 export function getUserInput(): UserInput {
     const args = minimist(process.argv.slice(2)) as Args;
-
     let {
         _: [path],
         itemType,

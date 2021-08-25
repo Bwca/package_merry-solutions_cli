@@ -89,3 +89,127 @@ describe('Tests for generateFileNames for hook', () => {
         expect(templateFileNames).toEqual(expectedFileNames);
     });
 });
+
+describe('Tests for generateFileNames for component with nested folders', () => {
+    const ARGS: GenerateFileNamesPayload = {
+        fileName: 'Awesome',
+        itemType: 'component',
+        templatesRoot: './templates',
+    };
+
+    let dirSpy: any = null;
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        dirSpy = jest
+            .spyOn(fileUtils, 'readDir')
+            .mockResolvedValueOnce([
+                'component.model.ts.mustache',
+                'component.module.scss.mustache',
+                'component.spec.tsx.mustache',
+                'component.tsx.mustache',
+                'index.ts.mustache',
+                'nested-folder',
+            ] as any)
+            .mockResolvedValueOnce([
+                'nested-folder.component.tsx.mustache',
+                'nested-folder.index.ts.mustache',
+                'deeper-nested-folder',
+            ] as any)
+            .mockResolvedValueOnce(['deeper-nested-folder.component.tsx.mustache', 'deeper-nested-folder.index.ts.mustache'] as any);
+    });
+
+    it('Should traverse all 3 directories', async () => {
+        // Arrange
+        const expectedDirCalls = 3;
+
+        // Act
+        await generateFileNames(ARGS);
+
+        // Assert
+        expect(dirSpy).toHaveBeenCalledTimes(expectedDirCalls);
+    });
+
+    it('Should produce an array of file names and folders to generate', async () => {
+        // Arrange
+        const expectedFileNames = [
+            'Awesome.model.ts',
+            'Awesome.module.scss',
+            'Awesome.spec.tsx',
+            'Awesome.tsx',
+            'index.ts',
+            'nested-folder/nested-folder.Awesome.tsx',
+            'nested-folder/nested-folder.index.ts',
+            'nested-folder/deeper-nested-folder/deeper-nested-folder.Awesome.tsx',
+            'nested-folder/deeper-nested-folder/deeper-nested-folder.index.ts',
+        ];
+
+        // Act
+        const { fileNamesToGenerate } = await generateFileNames(ARGS);
+
+        // Assert
+        expect(fileNamesToGenerate).toEqual(expectedFileNames);
+    });
+});
+
+describe('Tests for generateFileNames for component with nested with placeholder names to be replaced', () => {
+    const ARGS: GenerateFileNamesPayload = {
+        fileName: 'Awesome',
+        itemType: 'component',
+        templatesRoot: './templates',
+    };
+
+    let dirSpy: any = null;
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        dirSpy = jest
+            .spyOn(fileUtils, 'readDir')
+            .mockResolvedValueOnce([
+                'component.model.ts.mustache',
+                'component.module.scss.mustache',
+                'component.spec.tsx.mustache',
+                'component.tsx.mustache',
+                'index.ts.mustache',
+                'nested-component',
+            ] as any)
+            .mockResolvedValueOnce([
+                'nested-component.component.tsx.mustache',
+                'nested-component.index.ts.mustache',
+                'deeper-nested-component',
+            ] as any)
+            .mockResolvedValueOnce(['deeper-nested-component.component.tsx.mustache', 'deeper-nested-component.index.ts.mustache'] as any);
+    });
+
+    it('Should traverse all 3 directories', async () => {
+        // Arrange
+        const expectedDirCalls = 3;
+
+        // Act
+        await generateFileNames(ARGS);
+
+        // Assert
+        expect(dirSpy).toHaveBeenCalledTimes(expectedDirCalls);
+    });
+
+    it('Should produce an array of file names and folders to generate', async () => {
+        // Arrange
+        const expectedFileNames = [
+            'Awesome.model.ts',
+            'Awesome.module.scss',
+            'Awesome.spec.tsx',
+            'Awesome.tsx',
+            'index.ts',
+            'nested-Awesome/nested-Awesome.Awesome.tsx',
+            'nested-Awesome/nested-Awesome.index.ts',
+            'nested-Awesome/deeper-nested-Awesome/deeper-nested-Awesome.Awesome.tsx',
+            'nested-Awesome/deeper-nested-Awesome/deeper-nested-Awesome.index.ts',
+        ];
+
+        // Act
+        const { fileNamesToGenerate } = await generateFileNames(ARGS);
+
+        // Assert
+        expect(fileNamesToGenerate).toEqual(expectedFileNames);
+    });
+});
