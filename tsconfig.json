@@ -16,7 +16,8 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
-        "sourceMap": false
+        "sourceMap": false,
+        "useUnknownInCatchVariables": false
     },
     "include": ["src/**/*"],
     "exclude": ["src/**/*.test.ts", "src/**/*__test__"]
