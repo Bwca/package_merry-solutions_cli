@@ -7,7 +7,7 @@ export const use{{ context }} = (): {{ context }}ContextConfig => {
 
     if (config === undefined) {
         throw new Error(
-            "хук use{{ context }} должен использоваться внутри {{ context }}Context"
+            "{{ context }} hook can only be used within {{ context }}Context"
         );
     }
 
