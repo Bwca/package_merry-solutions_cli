@@ -10,8 +10,8 @@ export async function generateFileNames({ fileName, itemType, templatesRoot }: G
     let fileNamesToGenerate: string[] = [];
     let subfoldersToGenerate: string[] = [];
 
-    const regexp = new RegExp(`${itemType}`, 'g');
-    const swapPlaceHolderForFileName = (i: string) => i.replace(regexp, `${fileName}`);
+    const regexp = new RegExp(`([^\\.]|^)${itemType}`, 'g');
+    const swapPlaceHolderForFileName = (i: string) => i.replace(regexp, `$1${fileName}`);
 
     await traverseDir(itemTemplatesDir);
 
