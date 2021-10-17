@@ -21,7 +21,8 @@
         "test": "jest",
         "cast": "cast",
         "build": "webpack",
-        "g:c": "ts-node src my-awesome-component --itemType=component --templatesRoot=./templates/"
+        "g:c": "ts-node src my-awesome-component --itemType=component --templatesRoot=./templates/",
+        "g:ctx": "ts-node src awesome --itemType=context --templatesRoot=./templates/"
     },
     "husky": {
         "hooks": {}

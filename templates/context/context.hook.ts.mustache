@@ -1,0 +1,15 @@
+import { useContext } from "react";
+
+import { {{ context }}Context, {{ context }}ContextConfig } from "./{{ fileName }}.context";
+
+export const use{{ context }} = (): {{ context }}ContextConfig => {
+    const config = useContext({{ context }}Context);
+
+    if (config === undefined) {
+        throw new Error(
+            "{{ context }} hook can only be used within {{ context }}Context"
+        );
+    }
+
+    return config;
+};

@@ -1,0 +1,17 @@
+import { useState } from "react";
+
+import { {{ context }}Context, {{ context }}ContextConfig } from "./{{ fileName }}.context";
+
+export const {{ context }}Provider = ({
+    children,
+}: {
+    children: JSX.Element;
+}): JSX.Element => {
+    const [data, setData] = useState<{{ context }}ContextConfig>({});
+
+    return (
+        <{{ context }}Context.Provider value={data}>
+            {children}
+        </{{ context }}Context.Provider>
+    );
+};
