@@ -17,7 +17,6 @@
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
         "sourceMap": false,
-        "useUnknownInCatchVariables": false
     },
     "include": ["src/**/*"],
     "exclude": ["src/**/*.test.ts", "src/**/*__test__"]
