@@ -57,6 +57,58 @@ describe('Tests for generateFileNames for component', () => {
     });
 });
 
+describe('Tests for generateFileNames for component with type', () => {
+    const ARGS: GenerateFileNamesPayload = {
+        fileName: 'AwesomeComponent',
+        itemType: 'component',
+        templatesRoot: './templates',
+    };
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        jest.spyOn(fileUtils, 'readDir').mockResolvedValueOnce([
+            'component.model.ts.mustache',
+            'component.component.scss.mustache',
+            'component.component.spec.tsx.mustache',
+            'component.component.tsx.mustache',
+            'index.ts.mustache',
+        ] as any);
+    });
+
+    it('Should produce an array of file names to generate', async () => {
+        // Arrange
+        const expectedFileNames = [
+            'AwesomeComponent.model.ts',
+            'AwesomeComponent.component.scss',
+            'AwesomeComponent.component.spec.tsx',
+            'AwesomeComponent.component.tsx',
+            'index.ts',
+        ];
+
+        // Act
+        const { fileNamesToGenerate } = await generateFileNames(ARGS);
+
+        // Assert
+        expect(fileNamesToGenerate).toEqual(expectedFileNames);
+    });
+    it('Should produce an array of template file names', async () => {
+        // Arrange
+        const expectedFileNames = [
+            'component.model.ts.mustache',
+            'component.component.scss.mustache',
+            'component.component.spec.tsx.mustache',
+            'component.component.tsx.mustache',
+            'index.ts.mustache',
+        ];
+
+        // Act
+        const { templateFileNames } = await generateFileNames(ARGS);
+
+        // Assert
+        expect(templateFileNames).toEqual(expectedFileNames);
+    });
+});
+
 describe('Tests for generateFileNames for hook', () => {
     const ARGS: GenerateFileNamesPayload = {
         fileName: 'Awesome',
@@ -138,9 +190,9 @@ describe('Tests for generateFileNames for component with nested folders', () => 
             'Awesome.spec.tsx',
             'Awesome.tsx',
             'index.ts',
-            'nested-folder/nested-folder.Awesome.tsx',
+            'nested-folder/nested-folder.component.tsx',
             'nested-folder/nested-folder.index.ts',
-            'nested-folder/deeper-nested-folder/deeper-nested-folder.Awesome.tsx',
+            'nested-folder/deeper-nested-folder/deeper-nested-folder.component.tsx',
             'nested-folder/deeper-nested-folder/deeper-nested-folder.index.ts',
         ];
 
@@ -200,9 +252,9 @@ describe('Tests for generateFileNames for component with nested with placeholder
             'Awesome.spec.tsx',
             'Awesome.tsx',
             'index.ts',
-            'nested-Awesome/nested-Awesome.Awesome.tsx',
+            'nested-Awesome/nested-Awesome.component.tsx',
             'nested-Awesome/nested-Awesome.index.ts',
-            'nested-Awesome/deeper-nested-Awesome/deeper-nested-Awesome.Awesome.tsx',
+            'nested-Awesome/deeper-nested-Awesome/deeper-nested-Awesome.component.tsx',
             'nested-Awesome/deeper-nested-Awesome/deeper-nested-Awesome.index.ts',
         ];
 
