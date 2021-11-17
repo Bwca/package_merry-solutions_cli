@@ -58,6 +58,8 @@ Would generate a component in `src/components/MyAwesomeComponent` based on the p
 
 **nameCase** = optional, name case for the entity name inside the template file, can be either set to `camelCase` or `PascalCase`. Defaults to `PascalCase`, is used to convert file name to entity name if the file name contains dashes or underscores.
 
+**folderPrefix** = optional, prepend item folder with a string, i.e. `--folderPrefix=use-` for a hook.
+
 Also can add any additional amount of `--key=value` pairs for replacements. I.e. if your template looks like:
 
 ```mustache
