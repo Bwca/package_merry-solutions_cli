@@ -47,13 +47,13 @@ describe('Tests for generateFileNames for component', () => {
     });
     it('Should produce itemTemplatesDir', async () => {
         // Arrange
-        const expectedItemTemplatesDir = 'templates\\component';
+        const expectedItemTemplatesDir = 'templates/component';
 
         // Act
         const { itemTemplatesDir } = await generateFileNames(ARGS);
 
         // Assert
-        expect(itemTemplatesDir).toEqual(expectedItemTemplatesDir);
+        expect(itemTemplatesDir.replace(/\/\//g, '/')).toEqual(expectedItemTemplatesDir);
     });
 });
 
