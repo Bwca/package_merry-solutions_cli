@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0] 2021-11-18
+
+### Added
+
+-   support for folder prefixes.
+
 ## [1.2.0] 2021-08-31
 
 ### Added

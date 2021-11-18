@@ -1,6 +1,6 @@
 {
     "name": "@merry-solutions/cli",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "Generate application components based on templates using command line.",
     "keywords": [
         "cli",
