@@ -22,6 +22,7 @@
         "cast": "cast",
         "build": "webpack",
         "g:c": "ts-node src my-awesome-component --itemType=component --templatesRoot=./templates/",
+        "g:h": "ts-node src my-awesome-hook --folderPrefix=use- --itemType=hook --templatesRoot=./templates/",
         "g:ctx": "ts-node src awesome --itemType=context --templatesRoot=./templates/"
     },
     "husky": {
